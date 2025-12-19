@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AppContext = () => {
+const DashBoard = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const AppContext = () => {
   )
 }
 
-export default AppContext
+export default DashBoard
