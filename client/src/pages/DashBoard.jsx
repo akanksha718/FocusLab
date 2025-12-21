@@ -1,9 +1,12 @@
-import React from 'react'
+import HabitTracker from '../components/HabitTracker'
+import Header from '../components/Header'
+
 
 const DashBoard = () => {
   return (
-    <div>
-      
+    <div className='bg-gray-800 min-h-screen '>
+      <Header />
+      <HabitTracker/>
     </div>
   )
 }

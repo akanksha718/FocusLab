@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { auth } from "./config/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Signup from "./pages/SignUp";
@@ -8,11 +10,20 @@ import NotFound from "./components/common/NotExist";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Check if user is logged in when app mounts
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+
+    return unsubscribe;
+  }, []);
 
   const ProtectedRoute = ({ children }) => {
     if (!user) {
-      setLoading(false);
       return <Navigate to="/login" replace />;
     }
     return children;
@@ -20,7 +31,6 @@ function App() {
 
   const PublicRoute = ({ children }) => {
     if (user) {
-      setLoading(false);
       return <Navigate to="/dashboard" replace />;
     }
     return children;

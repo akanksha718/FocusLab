@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import { auth } from "../config/firebase";
 
-const API = import.meta.env.API || "http://localhost:5000";
+const API = import.meta.env.VITE_API || "http://localhost:3000";
 
 export const emailSignup = async (email, password) => {
   const userCred = await createUserWithEmailAndPassword(auth, email, password);
@@ -45,3 +45,36 @@ const syncUser = async (user) => {
     headers: { Authorization: `Bearer ${token}` }
   });
 };
+
+
+
+const habits = [
+  {
+    id: 1,
+    name: "Wake up at 05:00",
+    days: [true, true, true, true, true, false, false]
+  },
+  {
+    id: 2,
+    name: "No alcohol",
+    days: [true, true, true, false, true, false, false]
+  },
+  {
+    id: 3,
+    name: "Cold shower",
+    days: [true, true, false, false, true, false, false]
+  },
+  {
+    id: 4,
+    name: "1 hour on social media",
+    days: [false, false, false, false, true, false, false]
+  },
+  {
+    id: 5,
+    name: "Gym",
+    days: [true, true, true, true, false, false, false]
+  }
+];
+
+export default habits;
+

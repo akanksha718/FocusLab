@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 const Loading = () => {
   return (
-    <div className='bg-gradient-to-b from-[#d3d2d4] to-[#404040]
+    <div className='bg-gradient-to-b from-[#d3d2d4] to-[#717070]
      backdrop-opacity-60 flex items-center justify-center h-screen w-screen 
      text-white text-2xl'>
       <div className='w-10 h-10 rounded-full border-3 border-white border-t-transparent animate-spin'>
