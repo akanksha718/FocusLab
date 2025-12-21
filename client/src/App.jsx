@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { auth } from "./config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/DashBoard";
 import Signup from "./pages/SignUp";
 import Loading from "./components/common/Loading";
 import NotFound from "./components/common/NotExist";
