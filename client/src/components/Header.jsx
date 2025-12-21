@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Menu, X, Bell, Search, User, ChevronDown } from 'lucide-react';
+import { User, ChevronDown } from 'lucide-react';
+import { auth } from '../config/firebase';
+import { signOut } from 'firebase/auth';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -66,9 +68,9 @@ const Header = () => {
             </button> */}
 
             {/* Mobile Search Button */}
-            <button className="md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+            {/* <button className="md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
               <Search className="h-5 w-5" />
-            </button>
+            </button> */}
 
             {/* Profile Dropdown */}
             <div className="relative">
@@ -80,7 +82,7 @@ const Header = () => {
                   <User className="h-4 w-4 text-white" />
                 </div>
                 <div className="hidden md:block text-left">
-                  <p className="text-sm font-medium text-gray-900">John Doe</p>
+                  <p className="text-sm font-medium text-gray-900">You</p>
                   {/* <p className="text-xs text-gray-500">Premium Plan</p> */}
                 </div>
                 <ChevronDown className="hidden md:block h-4 w-4 text-gray-500" />
@@ -90,28 +92,40 @@ const Header = () => {
               {isProfileOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
 
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 transition-colors"
+                  <button
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      try {
+                        await signOut(auth);
+                      } catch (err) {
+                        // ignore sign-out errors
+                      }
+                      try {
+                        localStorage.removeItem('focuslab_user');
+                      } catch (err) { }
+                      // redirect to login
+                      window.location.href = '/login';
+                    }}
+                    className="w-full text-left block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 transition-colors"
                   >
                     Sign Out
-                  </a>
+                  </button>
                 </div>
               )}
             </div>
 
             {/* Mobile Menu Button */}
-            <button
+            {/* <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+            </button> */}
           </div>
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
+        {/* {isMenuOpen && (
           <div className="md:hidden border-t border-gray-200 py-4">
             <div className="space-y-1">
               {navItems.map((item) => (
@@ -136,7 +150,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </header>
   );

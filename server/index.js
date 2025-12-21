@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
 import userrouter from './routes/auth.js';
+import habitsRouter from './routes/habits.js';
 import connectDB from './config/db.js';
 
 
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
 app.use("/auth", userrouter);
+app.use("/habits", habitsRouter);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

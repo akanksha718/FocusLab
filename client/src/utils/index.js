@@ -48,33 +48,5 @@ const syncUser = async (user) => {
 
 
 
-const habits = [
-  {
-    id: 1,
-    name: "Wake up at 05:00",
-    days: [true, true, true, true, true, false, false]
-  },
-  {
-    id: 2,
-    name: "No alcohol",
-    days: [true, true, true, false, true, false, false]
-  },
-  {
-    id: 3,
-    name: "Cold shower",
-    days: [true, true, false, false, true, false, false]
-  },
-  {
-    id: 4,
-    name: "1 hour on social media",
-    days: [false, false, false, false, true, false, false]
-  },
-  {
-    id: 5,
-    name: "Gym",
-    days: [true, true, true, true, false, false, false]
-  }
-];
 
-export default habits;
 
